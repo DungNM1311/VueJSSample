@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        body {
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        p,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.fav {
+            background: #ff9ed2;
+            color: white;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello Vuejs</h1>
+
+    <!-- <div id="app">
+        <p>{{title}}</p>
+        <p>{{name}}</p>
+        <p>{{sex}}</p>
+        <p>{{age}}</p>
+        <button v-on:click="age++">Increase age</button>
+        <button v-on:click="age--">Decrease age</button>
+        <div @click="changeTitle('DungNM')"> Change book title</div>
+    </div> -->
+
+    <div id="app">
+
+        <!-- attrvyre binding -->
+
+        <a v-bind:href="url">Some thing</a>
+
+        <div v-if="showBook">
+            <!-- <p>{{title}}</p>
+            <p>{{name}}</p>
+            <p>{{sex}}</p>
+            <p>{{age}}</p> -->
+            <ul>
+                <li v-for="book in filterBooks" :class="{fav : book.isFav}" @click="clickFav(book)">
+                    <img :src="book.url" :alt="book.title">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <button v-on:click="showBookFun()">
+            <span v-if="showBook">Hide Book</span>
+            <span v-else="showBook">Show Book</span>
+        </button>
+        <div v-show="showBook">isShowing state</div>
+
+        <!-- mouse event -->
+        <div class="box" @mouseover="handleEvent($event, 5)">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMouseMove">position - {{ x }} {{ y }}</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
